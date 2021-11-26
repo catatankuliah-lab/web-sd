@@ -13,10 +13,18 @@
 
         if ($result->num_rows > 0) {
             $row = mysqli_fetch_assoc($result);
-            $_SESSION['username'] = $row['username'];
-            echo "<script>alert('Berhasil Login')</script>";
+            if($row['role'] == 1) {
+                $_SESSION['id_admin'] = $row['id_admin'];
+                $_SESSION['message'] = "<script>alert('Berhasil Login (Admin)')</script>";
+                header("Location:  home_admin.php");
+            } else {
+                $_SESSION['id_guru'] = $row['id_guru'];
+                $_SESSION['message'] = "<script>alert('Berhasil Login (Guru)')</script>";
+                header("Location:  home_guru.php");
+            }
         } else {
             echo "<script>alert('Gagal Login')</script>";
+            header("Refresh:0");
         }
 
     } else {
