@@ -44,7 +44,7 @@
 <?php
             while($data_matapelajaran = mysqli_fetch_array($result_query_matapelajaran)) {         
 ?>
-                <?= $data_matapelajaran['nama_matapelajaran']; ?> <br>
+                <a href="detail_nilai_matapelajaran.php?id=<?= $data_matapelajaran['id_matapelajaran']; ?>"><?= $data_matapelajaran['nama_matapelajaran']; ?></a><br>
 <?php 
              }
 ?> 
