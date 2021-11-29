@@ -1,9 +1,33 @@
+<?php
+  include_once '../php/connection.php';
+  session_start();
+
+  if(isset($_POST['signin'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $query_login = "SELECT * FROM table_user WHERE username='$username' AND password='$password'";
+    $result = mysqli_query($conn, $query_login);
+    if ($result->num_rows > 0) {
+        $row = mysqli_fetch_assoc($result);
+        if($row['role'] == 1) {
+            $_SESSION['id_admin'] = $row['id_admin'];
+            header("Location: user/admin.html");
+        } else {
+            $_SESSION['id_guru'] = $row['id_guru'];
+            header("Location: user/home.html");
+        }
+    } else {
+        echo "<script>alert('Gagal Login')</script>";
+        header("Refresh:0");
+    }
+  } else {
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Log in</title>
+  <title>SDN 1 Mandirancan | Sign In</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -24,17 +48,17 @@
     <div class="card-body">
       <p class="login-box-msg">Masukan Username Dan Password</p>
 
-      <form action="../../index3.html" method="post">
+      <form action="" method="POST">
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Username">
+          <input type="text" class="form-control" placeholder="Username" name="username" required>
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
+              <span class="fas fa-user"></span>
             </div>
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" class="form-control" placeholder="Password" name="password" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -46,7 +70,7 @@
           </div>
           <!-- /.col -->
           <div class="col-12">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            <button type="submit" class="btn btn-primary btn-block" name="signin">Sign In</button>
           </div>
           <!-- /.col -->
         </div>
@@ -69,3 +93,6 @@
 <script src="../dist/js/adminlte.min.js"></script>
 </body>
 </html>
+<?php
+  }
+?>
