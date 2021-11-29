@@ -13,8 +13,8 @@
       $nilai_pts_2 = $data_nilai_matapelajaran['nilai_pts_2'];
       $nilai_pts_3 = $data_nilai_matapelajaran['nilai_pts_3'];
       $nilai_pas_1 = $data_nilai_matapelajaran['nilai_pas_1'];
-      $nilai_pts_2 = $data_nilai_matapelajaran['nilai_pas_2'];
-      $nilai_pts_3 = $data_nilai_matapelajaran['nilai_pas_3'];
+      $nilai_pas_2 = $data_nilai_matapelajaran['nilai_pas_2'];
+      $nilai_pas_3 = $data_nilai_matapelajaran['nilai_pas_3'];
       $nilai_kd_1 = $data_nilai_matapelajaran['nilai_kd_1'];
       $nilai_kd_2 = $data_nilai_matapelajaran['nilai_kd_2'];
       $nilai_kd_3 = $data_nilai_matapelajaran['nilai_kd_3'];
@@ -228,15 +228,15 @@
                   <div class="card-body">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Tema 3.1</label>
-                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Masukan Nilai" value="<?= $nilai_harian_1 ;?>" required>
+                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Masukan Nilai" value="<?= $nilai_pts_1 ;?>" required>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Tema 3.1</label>
-                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Masukan Nilai" value="<?= $nilai_harian_2 ;?>" required>
+                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Masukan Nilai" value="<?= $nilai_pts_2 ;?>" required>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Tema 3.1</label>
-                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Masukan Nilai" value="<?= $nilai_harian_3 ;?>" required>
+                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Masukan Nilai" value="<?= $$nilai_pts_3 ;?>" required>
                     </div>
                   </div>
                 </div>
@@ -253,15 +253,15 @@
                   <div class="card-body">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Tema 3.1</label>
-                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Masukan Nilai" value="<?= $nilai_harian_1 ;?>" required>
+                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Masukan Nilai" value="<?= $nilai_pas_1 ;?>" required>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Tema 3.1</label>
-                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Masukan Nilai" value="<?= $nilai_harian_2 ;?>" required>
+                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Masukan Nilai" value="<?= $nilai_pas_2 ;?>" required>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Tema 3.1</label>
-                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Masukan Nilai" value="<?= $nilai_harian_3 ;?>" required>
+                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Masukan Nilai" value="<?= $nilai_pas_3 ;?>" required>
                     </div>
                   </div>
                 </div>
@@ -278,15 +278,15 @@
                   <div class="card-body">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Tema 3.1</label>
-                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Masukan Nilai" value="<?= $nilai_harian_1 ;?>" required>
+                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Masukan Nilai" value="<?= $nilai_kd_1 ;?>" required>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Tema 3.1</label>
-                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Masukan Nilai" value="<?= $nilai_harian_2 ;?>" required>
+                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Masukan Nilai" value="<?= $nilai_kd_2 ;?>" required>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Tema 3.1</label>
-                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Masukan Nilai" value="<?= $nilai_harian_3 ;?>" required>
+                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Masukan Nilai" value="<?= $nilai_kd_3 ;?>" required>
                     </div>
                   </div>
                 </div>
