@@ -1,3 +1,19 @@
+<?php
+  include_once("../../php/connection.php");
+  session_start();
+  $id_url = $_GET['id'];
+  $kelas = $_SESSION['kelas'];
+  $query_nama_matapelajaran = mysqli_query($conn, "SELECT nama_matapelajaran FROM table_matapelajaran WHERE id_matapelajaran=$id_url");
+  while($data_namapelajaran = mysqli_fetch_array($query_nama_matapelajaran)) {
+      $nama_matapelajaran = $data_namapelajaran['nama_matapelajaran'];
+  }
+  $_SESSION['nama_matapelajaran'] = $nama_matapelajaran;
+  $query_matapelajaran = "SELECT table_nilai_matapelajaran.*, table_siswa.nis, table_siswa.nama_siswa FROM table_nilai_matapelajaran INNER JOIN table_siswa ON table_nilai_matapelajaran.id_siswa = table_siswa.id_siswa WHERE id_matapelajaran=$id_url ORDER BY id_siswa ASC";
+  $result_query_matapelajaran = mysqli_query($conn, $query_matapelajaran);
+  $result_query_siswa = mysqli_query($conn, "SELECT * FROM table_siswa WHERE kelas=$kelas ORDER BY nama_siswa");
+  if($result_query_matapelajaran -> num_rows > 0) {
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,11 +33,6 @@
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
   <div class="wrapper">
-
-  <!-- Preloader
-  <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__wobble" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div> -->
 
    <!-- Navbar -->
    <nav class="main-header navbar navbar-expand navbar-dark">
@@ -135,12 +146,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Nilai Mata Pelajaran Agama</h1>
+            <h1>Mata Pelajaran <?= $nama_matapelajaran ;?></h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="home.html">Home</a></li>
-              <li class="breadcrumb-item active">Nilai Mata Pelajaran Agama</li>
+              <li class="breadcrumb-item"><a href="home.php">Home</a></li>
+              <li class="breadcrumb-item active">Mata Pelajaran <?= $nama_matapelajaran ;?></li>
             </ol>
           </div>
         </div>
@@ -152,114 +163,107 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
-          <div class="card">
+          <div class="card ml-2">
             <div class="card-header">
               <h3 class="card-title">Detail Nilai</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <table id="example2" class="table table-bordered table-hover">
-                <thead>
-                <tr align="center">
-                  <th rowspan="2">No</th>
-                  <th rowspan="2">Nomor Induk</th>
-                  <th rowspan="2">Nama Siswa</th>
-                  <th colspan="3">Nilai Harian</th>
-                  <th colspan="3">PTS</th>
-                  <th colspan="3">PAS</th>
-                  <th colspan="3">Kompetisi Dasar</th>
-                  <th rowspan="2">Nilai</th>
-                  <th rowspan="2">Predikat</th>
-                  <th colspan="2">Hasil</th>
-                  <th rowspan="2">Deskripsi</th>
-                  <th rowspan="2">Action</th>
-                </tr>
-                <!-- </thead>
-                <tbody> -->
+              <table class="table table-bordered table-hover text-center">
                 <tr>
-                 <td>3.1</td>
-                 <td>3.5</td>
-                 <td>3.8</td>
-                 <td>3.1</td>
-                 <td>3.5</td>
-                 <td>3.8</td>
-                 <td>3.1</td>
-                 <td>3.5</td>
-                 <td>3.8</td>
-                 <td>3.1</td>
-                 <td>3.5</td>
-                 <td>3.8</td>
-                 <td>Nilai Maksimal</td>
-                 <td>Nilai Minimal</td>
-                </tr>
-                 <td></td>
-                 <td></td>
-                 <td></td>
-                 <td></td>
-                 <td></td>
-                 <td></td>
-                 <td></td>
-                 <td></td>
-                 <td></td>
-                 <td></td>
-                 <td></td>
-                 <td></td>
-                 <td></td>
-                 <td></td>
-                 <td></td>
-                 <td></td>
-                 <td></td>
-                 <td></td>
-                 <td></td>
-                 <td></td>
-                 <td>
-                   <form action="inputNilai.html">
-                    <button type="submit" class="btn btn-primary">Update</button>
-                   </form>
-                 </td>
+                  <td rowspan="2" class="align-middle">No</td>
+                  <td rowspan="2" class="align-middle">NIS</td>
+                  <td rowspan="2" class="align-middle">Nama Siswa</td>
+                  <td colspan="3" class="align-middle">Harian</td>
+                  <td colspan="3" class="align-middle">PTS</td>
+                  <td colspan="3" class="align-middle">PAS</td>
+                  <td colspan="3" class="align-middle">KD</td>
+                  <td rowspan="2" class="align-middle">Niali</td>
+                  <td rowspan="2" class="align-middle">Predikat</td>
+                  <td colspan="2" class="align-middle">Hasil</td>
+                  <td rowspan="2" class="align-middle">Deskripsi</td>
+                  <td rowspan="2" class="align-middle">Action</td>
                 </tr>
                 <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>H1</td>
+                  <td>H2</td>
+                  <td>H3</td>
+                  <td>T1</td>
+                  <td>T2</td>
+                  <td>T3</td>
+                  <td>A1</td>
+                  <td>A2</td>
+                  <td>A3</td>
+                  <td>K1</td>
+                  <td>K2</td>
+                  <td>K3</td>
+                  <td>MIN</td>
+                  <td>MAX</td>
+                </tr>
+<?php
+              while($data_nilai_matapelajaran = mysqli_fetch_array($result_query_matapelajaran)) {         
+?>
+                <tr>
+                  <td>1</td>
+                  <td><?= $data_nilai_matapelajaran['nis'] ;?></td>
+                  <td class="text-left"><?= $data_nilai_matapelajaran['nama_siswa'] ;?></td>
+                  <td><?= $data_nilai_matapelajaran['nilai_harian_1'] ;?></td>
+                  <td><?= $data_nilai_matapelajaran['nilai_harian_2'] ;?></td>
+                  <td><?= $data_nilai_matapelajaran['nilai_harian_3'] ;?></td>
+                  <td><?= $data_nilai_matapelajaran['nilai_pts_1'] ;?></td>
+                  <td><?= $data_nilai_matapelajaran['nilai_pts_2'] ;?></td>
+                  <td><?= $data_nilai_matapelajaran['nilai_pts_3'] ;?></td>
+                  <td><?= $data_nilai_matapelajaran['nilai_pas_1'] ;?></td>
+                  <td><?= $data_nilai_matapelajaran['nilai_pas_2'] ;?></td>
+                  <td><?= $data_nilai_matapelajaran['nilai_pas_3'] ;?></td>
+                  <td><?= $data_nilai_matapelajaran['nilai_kd_1'] ;?></td>
+                  <td><?= $data_nilai_matapelajaran['nilai_kd_2'] ;?></td>
+                  <td><?= $data_nilai_matapelajaran['nilai_kd_3'] ;?></td>
+                  <td><?= $data_nilai_matapelajaran['nilai'] ;?></td>
+                  <td><?= $data_nilai_matapelajaran['predikat'] ;?></td>
                   <td>
-                    <form action="inputNilai.html">
-                      <button type="submit" class="btn btn-primary">Update</button>
+                    <?php
+                      $min = $data_nilai_matapelajaran['nilai'] - 2;
+                      echo $min;
+                    ?>
+                  </td>
+                  <td>
+                    <?php
+                      $max = $data_nilai_matapelajaran['nilai'] + 2;
+                      echo $max;
+                    ?>
+                  </td>
+                  <td>21</td>
+                  <td>
+                    <form action="input_nilai.php?id=<?= $data_nilai_matapelajaran['id'] ;?>" method="POST">
+                        <button class="btn btn-primary" name="update" type="submit">Update</button>
                     </form>
                   </td>
-                  </tr>
-                </tfoot>
+                </tr>
+<?php 
+             }
+?>
               </table>
             </div>
           </div>
-          </div>
-            <!-- /.card-body -->
-          </div>
         </div>
-        </div>
-          <!-- /.card -->
+        <!-- /.card-body -->
+      </div>
+    </div>
+  </div>
+  <!-- /.card -->
+  </div>
+</div>
 
-
- </div>
-
-
+ <?php
+    } else {
+        while($data_siswa = mysqli_fetch_array($result_query_siswa)) {         
+            $id_siswa = $data_siswa['id_siswa'];
+            mysqli_query($conn, "INSERT INTO table_nilai_matapelajaran (id_siswa, id_matapelajaran) VALUES('$id_siswa','$id_url')");
+        }
+        header("Refresh:0");
+    }
+?>
 
 <!-- REQUIRED SCRIPTS -->
 <!-- jQuery -->

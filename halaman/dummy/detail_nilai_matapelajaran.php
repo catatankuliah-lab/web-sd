@@ -8,7 +8,7 @@
         $nama_matapelajaran = $data_namapelajaran['nama_matapelajaran'];
     }
     $_SESSION['nama_matapelajaran'] = $nama_matapelajaran;
-    $query_matapelajaran = "SELECT table_nilai_matapelajaran.*, table_siswa.nama_siswa FROM table_nilai_matapelajaran INNER JOIN table_siswa ON table_nilai_matapelajaran.id_siswa = table_siswa.id_siswa WHERE id_matapelajaran=$id_url ORDER BY id_siswa ASC";
+    $query_matapelajaran = "SELECT table_nilai_matapelajaran.*, table_siswa.nis, table_siswa.nama_siswa FROM table_nilai_matapelajaran INNER JOIN table_siswa ON table_nilai_matapelajaran.id_siswa = table_siswa.id_siswa WHERE id_matapelajaran=$id_url ORDER BY id_siswa ASC";
     $result_query_matapelajaran = mysqli_query($conn, $query_matapelajaran);
     $result_query_siswa = mysqli_query($conn, "SELECT * FROM table_siswa WHERE kelas=$kelas ORDER BY nama_siswa");
     if($result_query_matapelajaran -> num_rows > 0) {

@@ -14,7 +14,7 @@
             header("Location: user/admin.html");
         } else {
             $_SESSION['id_guru'] = $row['id_guru'];
-            header("Location: user/home.html");
+            header("Location: user/home.php");
         }
     } else {
         echo "<script>alert('Gagal Login')</script>";
