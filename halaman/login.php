@@ -36,19 +36,53 @@
         $row = mysqli_fetch_assoc($result);
         if($row['role'] == 1) {
             $_SESSION['id_admin'] = $row['id_admin'];
-            header("Location: user/admin.html");
+            $temp_id = $row['id_admin'];
+            $query_admin = mysqli_query($conn, "SELECT * FROM table_admin WHERE id_admin=$temp_id");
+            $data = mysqli_fetch_assoc($query_admin);
+            $nama = $data['nama_admin'];
+?>
+          <script>
+            Swal.fire({
+              title: 'Berhasil',
+              text: 'Selamat Datang, <?= $nama ;?>',
+              icon:'success',
+              showConfirmButton: false,
+              timer: 2000,
+            }).then((result) => {
+              window.location = "http://localhost/web-sd/halaman/login.php";
+            });
+          </script>
+<?php
         } else {
             $_SESSION['id_guru'] = $row['id_guru'];
-            header("Location: user/home.php");
+            $temp_id = $row['id_guru'];
+            $query_guru = mysqli_query($conn, "SELECT * FROM table_guru WHERE id_guru=$temp_id");
+            $data = mysqli_fetch_assoc($query_guru);
+            $nama = $data['nama_guru'];
+?>
+            <script>
+              Swal.fire({
+                title: 'Berhasil',
+                text: 'Selamat Datang, <?= $nama ;?>',
+                icon:'success',
+                showConfirmButton: false,
+                timer: 2000,
+              }).then((result) => {
+                window.location = "http://localhost/web-sd/halaman/user/home.php";
+              });
+            </script>
+<?php
         }
     } else {
 ?>
         <script>
-          Swal.fire(
-            'Gagal',
-            'Username atau Password Salah',
-            'error'
-          ).then((result) => {
+          Swal.fire({
+            title: 'Gagal',
+            text: 'Username atau Password Salah',
+            icon:'error',
+            showConfirmButton: false,
+            timer: 2000,
+          }).then((result) => {
             window.location = "http://localhost/web-sd/halaman/login.php";
           });
         </script>
