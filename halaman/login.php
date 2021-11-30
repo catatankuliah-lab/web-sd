@@ -44,7 +44,13 @@
     } else {
 ?>
         <script>
-          Swal.fire('Any fool can use a computer');
+          Swal.fire(
+            'Gagal',
+            'Username atau Password Salah',
+            'error'
+          ).then((result) => {
+            window.location = "http://localhost/web-sd/halaman/login.php";
+          });
         </script>
 <?php
     }

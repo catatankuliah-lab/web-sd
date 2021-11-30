@@ -128,7 +128,7 @@
 
   <div class="content-wrapper">
     <div class="row">
-    <div class="cols-12">
+    <div class="col-12">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
@@ -238,6 +238,7 @@
         <!-- /.card-body -->
       </div>
     </div>
+  </section>
   </div>
   <!-- /.card -->
   </div>
