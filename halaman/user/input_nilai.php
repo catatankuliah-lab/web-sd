@@ -156,7 +156,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1><?= $_SESSION['nama_matapelajaran'] ;?> - Input Nilai</h1>
+            <h1> Input Nilai Mata Pelajaran <?= $_SESSION['nama_matapelajaran'] ;?></h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -236,7 +236,7 @@
                     </div>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Tema 3.1</label>
-                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Masukan Nilai" value="<?= $$nilai_pts_3 ;?>" required>
+                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Masukan Nilai" value="<?= $nilai_pts_3 ;?>" required>
                     </div>
                   </div>
                 </div>

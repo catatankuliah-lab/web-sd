@@ -1,3 +1,21 @@
+<?php
+  include_once '../../php/connection.php';
+  session_start();
+  $id_guru_session = $_SESSION['id_guru'];
+  $result_query_guru = mysqli_query($conn, "SELECT * FROM table_guru WHERE id_guru= $id_guru_session");
+  while($data_guru = mysqli_fetch_array($result_query_guru))
+  {
+      $nama_guru = $data_guru['nama_guru'];
+      $kelas = $data_guru['kelas'];
+      $nip = $data_guru['nip'];
+  }
+  $_SESSION['kelas'] = $kelas;
+  $result_query_matapelajaran = mysqli_query($conn, "SELECT * FROM table_matapelajaran WHERE kelas=$kelas ORDER BY id_matapelajaran ASC");
+  $result_query_jumlah_matapelajaran = mysqli_num_rows($result_query_matapelajaran);
+  $result_query_siswa = mysqli_query($conn, "SELECT * FROM table_siswa WHERE kelas=$kelas ORDER BY nama_siswa");
+  $result_query_jumlah_siswa = mysqli_num_rows($result_query_siswa);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,12 +35,6 @@
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
   <div class="wrapper">
-
-  <!-- Preloader
-  <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__wobble" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div> -->
-
    <!-- Navbar -->
    <nav class="main-header navbar navbar-expand navbar-dark">
     <!-- Left navbar links -->
@@ -108,18 +120,18 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+<?php
+            while($data_matapelajaran = mysqli_fetch_array($result_query_matapelajaran)) {
+?>
               <li class="nav-item">
-                <a href="Agama.html" class="nav-link">
+                <a href="detail_nilai_matapelajaran.php?id=<?= $data_matapelajaran['id_matapelajaran']; ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Agama</p>
+                  <p><?= $data_matapelajaran['nama_matapelajaran']; ?></p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="Bindonesia.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Bahasa Indonesia</p>
-                </a>
-              </li>
+<?php
+            }
+?>
             </ul>
           </li>
 
@@ -176,46 +188,59 @@
 
   <!-- Post -->
   <div class="post">  
-    <div class="card-header p-2">
-      <h1>Profil Sekolah</h1>
-    </div><!-- /.card-header -->
-
-    <!-- /.user-block -->
-    <div class="row mb-4">
-      <div class="col-sm-8">
-        <div class="card card-primary">
-          <div class="card-body box-profile">
-            <h3 class="profile-username text-center">SD NEGERI 1 KERTAWINANGUN</h3>
-                   <p class="text-muted text-center">Jln. Buyut Pringga N0.123 Dusun Pon Desa Kertawinangun</p>
-
-                   <ul class="list-group list-group-unbordered mb-1">
-                    <li class="list-group-item">
-                      <b>NPSN</b> <a class="float-right">20212788</a>
-                    </li>
-                    <li class="list-group-item">
-                      <b>Kepala Sekolah</b> <a class="float-right">NANA YUHANA, S.Pd.SD.</a>
-                    </li>
-                    <li class="list-group-item">
-                      <b>NIP</b> <a class="float-right">19650917 198610 1 004</a>
-                    </li>
-                    <li class="list-group-item">
-                      <b>DESA/KELURAHAN</b> <a class="float-right">KERTAWINANGUN</a>
-                    </li>
-                    <li class="list-group-item">
-                      <b>KECAMATAN</b> <a class="float-right">MANDIRANCAN</a>
-                    </li>
-                    <li class="list-group-item">
-                      <b>KABUPATEN/KOTA</b> <a class="float-right">KUNINGAN</a>
-                    </li>
-                    <li class="list-group-item">
-                      <b>PROVINSI</b> <a class="float-right">JAWA BARAT</a>
-                    </li>
-                  </ul>
+    <div class="card-header p-2 ml-1">
+      <h1>Home</h1>
+    </div>
+    <!-- /.card-header -->
+    <div class="row">
+      <div class="col-sm-12 ml-1">
+        <div class="row-sm-3">
+          <div class="col-sm-12">
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Profil Sekolah</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+              <h3 class="profile-username text-center">SD NEGERI 1 KERTAWINANGUN</h3>
+              <p class="text-muted text-center">Jln. Buyut Pringga N0.123 Dusun Pon Desa Kertawinangun</p>
+              <ul class="list-group list-group-unbordered mb-1">
+                <li class="list-group-item">
+                  <b>NPSN</b> <a class="float-right">20212788</a>
+                </li>
+                <li class="list-group-item">
+                  <b>Kepala Sekolah</b> <a class="float-right">NANA YUHANA, S.Pd.SD.</a>
+                </li>
+                <li class="list-group-item">
+                  <b>NIP</b> <a class="float-right">19650917 198610 1 004</a>
+                </li>
+                <li class="list-group-item">
+                  <b>DESA/KELURAHAN</b> <a class="float-right">KERTAWINANGUN</a>
+                </li>
+                <li class="list-group-item">
+                  <b>KECAMATAN</b> <a class="float-right">MANDIRANCAN</a>
+                </li>
+                <li class="list-group-item">
+                  <b>KABUPATEN/KOTA</b> <a class="float-right">KUNINGAN</a>
+                </li>
+                <li class="list-group-item">
+                  <b>PROVINSI</b> <a class="float-right">JAWA BARAT</a>
+                </li>
+              </ul>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
           </div>
         </div>
       </div>
       <!-- /.col -->
-      <div class="col-sm-4">
+    </div>
+    <!-- /.row -->
+
+    <!-- .row -->
+    <div class="row">
+      <div class="col-sm-12 ml-1">
         <div class="row-sm-3">
           <div class="col-sm-12">
             <div class="card card-primary">
@@ -225,52 +250,30 @@
               <!-- /.card-header -->
               <div class="card-body">
                 <strong><i class="fas fa-bars"></i> KELAS</strong>
-
-                <p class="text-muted">
-                  Kelas 5
-                </p>
-
+                <p class="text-muted">Kelas <?= $kelas ;?></p>
                 <hr>
                 <strong><i class="fas fa-user"></i> NAMA GURU</strong>
-
-                <p class="text-muted">
-                  MARYUNING, S.Pd.
-                </p>
-
+                <p class="text-muted"><?= $nama_guru ;?></p>
                 <hr>
-
-                <strong><i class="fas fa-envelope"></i> NIP</strong>
-
-                <p class="text-muted">19620808 199402 2 001</p>
-
+                <strong><i class="fas fa-key"></i> NIP</strong>
+                <p class="text-muted"><?= $nip ;?></p>
                 <hr>
-
                 <strong><i class="fas fa-users"></i> Jumlah Data Siswa Yang Masuk</strong>
-
-                <p class="text-muted">20 Siswa</p>
-
+                <p class="text-muted"><?= $result_query_jumlah_siswa ;?> Siswa</p>
                 <hr>
-
                 <strong><i class="fas fa-book"></i> Jumlah Mata Pelajaran</strong>
-
-                <p class="text-muted">8 Mata Pelajaran</p>
-
-                
+                <p class="text-muted"><?= $result_query_jumlah_matapelajaran ;?> Mata Pelajaran</p>              
               </div>
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
           </div>
-          </div>
         </div>
-        <!-- /.row -->
       </div>
       <!-- /.col -->
     </div>
     <!-- /.row -->
-
- 
-
+  </div>
 <!-- Control Sidebar -->
 <aside class="control-sidebar control-sidebar-dark">
   <!-- Control sidebar content goes here -->
