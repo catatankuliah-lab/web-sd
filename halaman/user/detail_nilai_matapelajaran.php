@@ -3,6 +3,7 @@
   session_start();
   $id_url = $_GET['id'];
   $kelas = $_SESSION['kelas'];
+  $result_query_li = mysqli_query($conn, "SELECT * FROM table_matapelajaran WHERE kelas=$kelas ORDER BY id_matapelajaran ASC");
   $query_nama_matapelajaran = mysqli_query($conn, "SELECT nama_matapelajaran FROM table_matapelajaran WHERE id_matapelajaran=$id_url");
   while($data_namapelajaran = mysqli_fetch_array($query_nama_matapelajaran)) {
       $nama_matapelajaran = $data_namapelajaran['nama_matapelajaran'];
@@ -108,31 +109,18 @@
        <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-book"></i>
-              <p>
-                Nilai Siswa
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="Agama.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Agama</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="Bindonesia.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Bahasa Indonesia</p>
-                </a>
-              </li>
-            </ul>
-          </li>
+<?php
+          while($data_matapelajaran = mysqli_fetch_array($result_query_li)) {
+?>
+            <li class="nav-item">
+              <a href="detail_nilai_matapelajaran.php?id=<?= $data_matapelajaran['id_matapelajaran']; ?>" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p><?= $data_matapelajaran['nama_matapelajaran']; ?></p>
+              </a>
+            </li>
+<?php
+          }
+?>
         </ul>
       </nav>
     </div>
