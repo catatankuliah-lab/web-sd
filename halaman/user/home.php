@@ -49,7 +49,7 @@
     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
   </li>
   <li class="nav-item d-none d-sm-inline-block">
-    <a href="home.html" class="nav-link">Home</a>
+    <a href="home.html" class="nav-link">Dashboard</a>
   </li>
   <li class="nav-item d-none d-sm-inline-block">
     <a href="#" class="nav-link">Contact</a>
@@ -142,29 +142,13 @@
       </li>
 
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="inputkkm.php?id=<?= $kelas ;?>" class="nav-link">
           <i class="nav-icon fas fa-book"></i>
           <p>
             KMM
             <i class="right fas fa-angle-left"></i>
           </p>
         </a>
-        <ul class="nav nav-treeview">
-          <li class="nav-item">
-            <a href="KKM.html" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>KKM</p>
-            </a>
-          </li>
-        </ul>
-        <ul class="nav nav-treeview">
-          <li class="nav-item">
-            <a href="inputKkm.html" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>Input KKM</p>
-            </a>
-          </li>
-        </ul>
       </li>
     </ul>
   </nav>
@@ -175,27 +159,17 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-  <!-- Content Header (Page header) -->
-  <section class="content-header">
-  <div class="container-fluid">
-  <div class="row mb-2">
-    <div class="col-sm-6">
-      <h1>Profile</h1>
-    </div>
-    <div class="col-sm-6">
-      <ol class="breadcrumb float-sm-right">
-        <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item active">User Profile</li>
-      </ol>
-    </div>
-  </div>
-  </div><!-- /.container-fluid -->
-  </section>
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+      </div>
+      <!-- /.container-fluid -->
+    </section>
 
   <!-- Post -->
   <div class="post">  
   <div class="card-header p-2 ml-1">
-  <h1>Home</h1>
+  <h2>Dashboard</h2>
   </div>
   <!-- /.card-header -->
   <div class="row">
