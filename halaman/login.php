@@ -35,6 +35,7 @@
         $row = mysqli_fetch_assoc($result);
         if($row['role'] == 1) {
             $_SESSION['id_admin'] = $row['id_admin'];
+            $_SESSION['login'] = $row['id_admin'];
             $temp_id = $row['id_admin'];
             $query_admin = mysqli_query($conn, "SELECT * FROM table_admin WHERE id_admin=$temp_id");
             $data = mysqli_fetch_assoc($query_admin);
@@ -68,7 +69,7 @@
                 showConfirmButton: false,
                 timer: 2000,
               }).then((result) => {
-                window.location = "http://localhost/web-sd/halaman/user/home.php";
+                window.location = "http://localhost/web-sd/halaman/user/dashboard.php";
               });
             </script>
 <?php
