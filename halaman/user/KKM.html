@@ -68,7 +68,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="home.html" class="brand-link">
+    <a href="home.php" class="brand-link">
       <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Admin</span>
     </a>
@@ -122,84 +122,103 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                KKM
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="KKM.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>KKM</p>
+                </a>
+              </li>
+            </ul>
+            </li>
         </ul>
       </nav>
     </div>
   </aside>
 
-  <div class="content-wrapper">
+<div class="content-wrapper">
     <div class="row">
-    <div class="cols-12">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Nilai Mata Pelajaran Agama</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="home.html">Home</a></li>
-              <li class="breadcrumb-item active">Nilai Mata Pelajaran Agama</li>
-            </ol>
-          </div>
+        <div class="col-12">
+            <section class="content-header">
+                <div class="container-fluid">
+                  <div class="row mb-4">
+                     <div class="col-6">
+                        <h1>Nilai Kompetensi Kriterian Minimal</h1>
+                     </div>
+                    <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                      <li class="breadcrumb-item"><a href="home.html">Home</a></li>
+                      <li class="breadcrumb-item active">Nilai Kompentensi Kriteria Minimal</li>
+                    </ol>
+                  </div>
+                </div>
+              </div><!-- /.container-fluid -->
+            </section>
+            <section class="content center">
+                <div class="container-fluid">
+                  <div class="row">
+                      <div class="col-12">
+                      <div class="card col-md-12">
+                        <div class="card-header">
+                          <h3 class="card-title">Detail Nilai</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                          <table id="example2" class="table table-bordered table-hover">
+                            <thead>
+                            <tr align="center">
+                              <th >No</th>
+                              <th >MATA PELAJARAN</th>
+                              <th >KKM</th>
+                              <th >Action</th>
+                            </tr>
+                            </thead>
+                            <tbody> 
+                             <td>1</td>
+                             <td>Pendidikan Agama dan Budi Pekerti</td>
+                             <td></td>
+                             <td>
+                               <form action="inputKkm.html">
+                                <button type="submit" class="btn btn-primary">Update</button>
+                               </form>
+                             </td>
+                            </tr>
+                            <tr>
+                              <td>2</td>
+                              <td>Pendidikan Pancasila dan Kewarganegaraan</td>
+                              <td></td>
+                              <td>
+                                <form action="inputKkm.html">
+                                  <button type="submit" class="btn btn-primary">Update</button>
+                                </form>
+                              </td>
+                              </tr>
+                            </tfoot>
+                          </table>
+                        </div>
+                      </div>
+                        <!-- /.card-body -->
+                      </div>
+                    </div>
+            </section>
         </div>
-      </div><!-- /.container-fluid -->
-    </section>
+    </div>
+</div>
+    
 
   <!-- Main content -->
-  <section class="content">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Detail Nilai</h3>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-              <table id="example2" class="table table-bordered table-hover">
-                <thead>
-                <tr align="center">
-                  <th >No</th>
-                  <th >MATA PELAJARAN</th>
-                  <th >KKM</th>
-                  <th >Action</th>
-                </tr>
-                <!-- </thead>
-                <tbody> -->
-                 <td></td>
-                 <td></td>
-                 <td></td>
-                 <td>
-                   <form action="inputNilai.html">
-                    <button type="submit" class="btn btn-primary">Update</button>
-                   </form>
-                 </td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>
-                    <form action="inputNilai.html">
-                      <button type="submit" class="btn btn-primary">Update</button>
-                    </form>
-                  </td>
-                  </tr>
-                </tfoot>
-              </table>
-            </div>
-          </div>
-          </div>
-            <!-- /.card-body -->
-          </div>
-        </div>
-        </div>
-          <!-- /.card -->
+  
 
 
- </div>
+
 
 
 
