@@ -1,7 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+    <!-- Swal -->
+    <link rel="stylesheet" href="../../plugins/sweetalert2/sweetalert2.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+    <!-- Swal css-->
+    <link rel="stylesheet" href="../plugins/sweetalert2/sweetalert2.min.css">
+    <!-- Swal js-->
+    <script src="../../plugins/sweetalert2/sweetalert2.all.min.js"></script>
+</head>
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <?php
   include_once("../../php/connection.php");
   session_start();
   $id_url = $_GET['id'];
+  $kelas = $_SESSION['kelas'];
+  $result_query_li = mysqli_query($conn, "SELECT * FROM table_matapelajaran WHERE kelas=$kelas ORDER BY id_matapelajaran ASC");
   $result_query_nilai_matapelajaran = mysqli_query($conn, "SELECT table_nilai_matapelajaran.*, table_siswa.nama_siswa FROM table_nilai_matapelajaran INNER JOIN table_siswa ON table_nilai_matapelajaran.id_siswa = table_siswa.id_siswa WHERE id=$id_url");
   while($data_nilai_matapelajaran = mysqli_fetch_array($result_query_nilai_matapelajaran)) {
       $id = $data_nilai_matapelajaran['id'];
@@ -18,26 +43,10 @@
       $nilai_kd_1 = $data_nilai_matapelajaran['nilai_kd_1'];
       $nilai_kd_2 = $data_nilai_matapelajaran['nilai_kd_2'];
       $nilai_kd_3 = $data_nilai_matapelajaran['nilai_kd_3'];
+      $predikat = $data_nilai_matapelajaran['predikat'];
   }
   $nilai_angka = ($nilai_harian_1 + $nilai_harian_2 + $nilai_harian_3 + $nilai_pts_1 + $nilai_pts_2 + $nilai_pts_3 + $nilai_pas_1 + $nilai_pas_2 + $nilai_pas_3 + $nilai_kd_1 + $nilai_kd_2 +$nilai_kd_3) / 12;
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
-   <!-- Google Font: Source Sans Pro -->
-   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-   <!-- Font Awesome Icons -->
-   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-   <!-- overlayScrollbars -->
-   <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-   <!-- Theme style -->
-   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-</head>
-<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
   <div class="wrapper">
    <!-- Navbar -->
    <nav class="main-header navbar navbar-expand navbar-dark">
@@ -113,37 +122,18 @@
        <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Nilai Siswa
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="../../index.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Agama</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../index.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Bahasa Indonesia</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../index.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>PPKN</p>
-                </a>
-              </li>
-            </ul>
-          </li>
+<?php
+          while($data_matapelajaran = mysqli_fetch_array($result_query_li)) {
+?>
+            <li class="nav-item">
+              <a href="detail_nilai_matapelajaran.php?id=<?= $data_matapelajaran['id_matapelajaran']; ?>" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p><?= $data_matapelajaran['nama_matapelajaran']; ?></p>
+              </a>
+            </li>
+<?php
+          }
+?>
         </ul>
       </nav>
     </div>
@@ -185,8 +175,8 @@
                 <div class="col-md-12">
                   <div class="card-body">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Nama Siswa</label>
-                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Masukan Nilai" value="<?= $nama ;?>" required readonly>
+                      <label for="labelNamaSiswa">Nama Siswa</label>
+                      <input type="text" name="nama_siswa" class="form-control" id="labelNamaSiswa" placeholder="Masukan Nilai" value="<?= $nama ;?>" required readonly>
                     </div>
                   </div>
                 </div>
@@ -202,16 +192,16 @@
                 <div class="col-md-12">
                   <div class="card-body">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Tema 3.1</label>
-                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Masukan Nilai" value="<?= $nilai_harian_1 ;?>" required>
+                      <label for="labelHarian1">Tema 3.1</label>
+                      <input type="number" name="nilai_harian_1" class="form-control" id="labelHarian1" placeholder="Masukan Nilai" value="<?= $nilai_harian_1 ;?>" required>
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Tema 3.1</label>
-                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Masukan Nilai" value="<?= $nilai_harian_2 ;?>" required>
+                      <label for="labelHarian2">Tema 3.1</label>
+                      <input type="number" name="nilai_harian_2" class="form-control" id="labelHarian2" placeholder="Masukan Nilai" value="<?= $nilai_harian_2 ;?>" required>
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Tema 3.1</label>
-                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Masukan Nilai" value="<?= $nilai_harian_3 ;?>" required>
+                      <label for="labelHarian3">Tema 3.1</label>
+                      <input type="number" name="nilai_harian_3" class="form-control" id="labelHarian3" placeholder="Masukan Nilai" value="<?= $nilai_harian_3 ;?>" required>
                     </div>
                   </div>
                 </div>
@@ -227,16 +217,16 @@
                 <div class="col-md-12">
                   <div class="card-body">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Tema 3.1</label>
-                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Masukan Nilai" value="<?= $nilai_pts_1 ;?>" required>
+                      <label for="labelPTS1">Tema 3.1</label>
+                      <input type="number" name="nilai_pts_1" class="form-control" id="labelPTS1" placeholder="Masukan Nilai" value="<?= $nilai_pts_1 ;?>" required>
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Tema 3.1</label>
-                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Masukan Nilai" value="<?= $nilai_pts_2 ;?>" required>
+                      <label for="labelPTS2">Tema 3.1</label>
+                      <input type="number" name="nilai_pts_2" class="form-control" id="labelPTS2" placeholder="Masukan Nilai" value="<?= $nilai_pts_2 ;?>" required>
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Tema 3.1</label>
-                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Masukan Nilai" value="<?= $nilai_pts_3 ;?>" required>
+                      <label for="labelPTS3">Tema 3.1</label>
+                      <input type="number" name="nilai_pts_3" class="form-control" id="labelPTS3" placeholder="Masukan Nilai" value="<?= $nilai_pts_3 ;?>" required>
                     </div>
                   </div>
                 </div>
@@ -252,16 +242,16 @@
                 <div class="col-md-12">
                   <div class="card-body">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Tema 3.1</label>
-                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Masukan Nilai" value="<?= $nilai_pas_1 ;?>" required>
+                      <label for="labelPAS1">Tema 3.1</label>
+                      <input type="number" name="nilai_pas_1" class="form-control" id="labelPAS1" placeholder="Masukan Nilai" value="<?= $nilai_pas_1 ;?>" required>
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Tema 3.1</label>
-                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Masukan Nilai" value="<?= $nilai_pas_2 ;?>" required>
+                      <label for="labelPAS2">Tema 3.1</label>
+                      <input type="number" name="nilai_pas_2" class="form-control" id="labelPAS2" placeholder="Masukan Nilai" value="<?= $nilai_pas_2 ;?>" required>
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Tema 3.1</label>
-                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Masukan Nilai" value="<?= $nilai_pas_3 ;?>" required>
+                      <label for="labelPAS13">Tema 3.1</label>
+                      <input type="number" name="nilai_pas_3" class="form-control" id="labelPAS3" placeholder="Masukan Nilai" value="<?= $nilai_pas_3 ;?>" required>
                     </div>
                   </div>
                 </div>
@@ -277,16 +267,16 @@
                 <div class="col-md-12">
                   <div class="card-body">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Tema 3.1</label>
-                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Masukan Nilai" value="<?= $nilai_kd_1 ;?>" required>
+                      <label for="labelKD1">Tema 3.1</label>
+                      <input type="number" name="nilai_kd_1" class="form-control" id="labelKD1" placeholder="Masukan Nilai" value="<?= $nilai_kd_1 ;?>" required>
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Tema 3.1</label>
-                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Masukan Nilai" value="<?= $nilai_kd_2 ;?>" required>
+                      <label for="labelKD2">Tema 3.1</label>
+                      <input type="number" name="nilai_kd_2" class="form-control" id="labelKD2" placeholder="Masukan Nilai" value="<?= $nilai_kd_2 ;?>" required>
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Tema 3.1</label>
-                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Masukan Nilai" value="<?= $nilai_kd_3 ;?>" required>
+                      <label for="labelKD3">Tema 3.1</label>
+                      <input type="number" name="nilai_kd_3" class="form-control" id="labelKD3" placeholder="Masukan Nilai" value="<?= $nilai_kd_3 ;?>" required>
                     </div>
                   </div>
                 </div>
@@ -302,12 +292,15 @@
                 <div class="col-md-12">
                   <div class="card-body">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Nilai Angka</label>
-                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Masukan Nilai" value="<?= $nilai_angka ;?>" required>
+                      <label for="labelNilai">Nilai Angka</label>
+                      <input type="number" name="nilai" class="form-control" id="labelNilai" placeholder="Masukan Nilai" value="<?= round($nilai_angka, 0) ;?>" required readonly>
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Predikat</label>
-                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Masukan Nilai" value="<?= $nilai_harian_2 ;?>" required>
+                      <label for="labelPredikat">Predikat</label>
+                      <input type="text" name="predikat" class="form-control" id="labelPredikat" placeholder="Masukan Nilai" value="<?= $predikat ;?>" required readonly>
+                    </div>
+                    <div class="form-group text-right">
+                      <button type="button" id="Update" class="btn btn-primary mt-2" style="width: 200px;" onclick="konfirmasi()">Perbaharui</button>
                     </div>
                   </div>
                 </div>
@@ -319,6 +312,29 @@
     </section>
     <!-- /.content -->
   </div>
+
+<script>
+  function konfirmasi() {
+    Swal.fire({
+      title: "Apakah Anda Yakin ?",
+      text: "Nilai <?= $nama ;?> Akan Diperbaharui",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: "Batalkan",
+      confirmButtonText: "Perbaharui"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      }
+    })
+  }
+</script>
   <!-- /.content-wrapper -->
 <!-- REQUIRED SCRIPTS -->
 <!-- jQuery -->
@@ -336,12 +352,5 @@
 <script src="../../plugins/raphael/raphael.min.js"></script>
 <script src="../../plugins/jquery-mapael/jquery.mapael.min.js"></script>
 <script src="../../plugins/jquery-mapael/maps/usa_states.min.js"></script>
-<!-- ChartJS -->
-<script src="../../plugins/chart.js/Chart.min.js"></script>
-
-<!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="../../dist/js/pages/dashboard2.js"></script>
 </body>
 </html>

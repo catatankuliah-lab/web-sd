@@ -1,8 +1,16 @@
 <?php
   include_once("../../php/connection.php");
   session_start();
+  if (!isset($_SESSION['login'])) {
+?>
+      <script>
+          window.location = "http://localhost/web-sd/halaman/login.php";
+      </script>
+<?php
+  } else {
   $id_url = $_GET['id'];
   $kelas = $_SESSION['kelas'];
+  $result_query_li = mysqli_query($conn, "SELECT * FROM table_matapelajaran WHERE kelas=$kelas ORDER BY id_matapelajaran ASC");
   $query_nama_matapelajaran = mysqli_query($conn, "SELECT nama_matapelajaran FROM table_matapelajaran WHERE id_matapelajaran=$id_url");
   while($data_namapelajaran = mysqli_fetch_array($query_nama_matapelajaran)) {
       $nama_matapelajaran = $data_namapelajaran['nama_matapelajaran'];
@@ -13,7 +21,6 @@
   $result_query_siswa = mysqli_query($conn, "SELECT * FROM table_siswa WHERE kelas=$kelas ORDER BY nama_siswa");
   if($result_query_matapelajaran -> num_rows > 0) {
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -108,31 +115,18 @@
        <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-book"></i>
-              <p>
-                Nilai Siswa
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="Agama.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Agama</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="Bindonesia.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Bahasa Indonesia</p>
-                </a>
-              </li>
-            </ul>
-          </li>
+<?php
+          while($data_matapelajaran = mysqli_fetch_array($result_query_li)) {
+?>
+            <li class="nav-item">
+              <a href="detail_nilai_matapelajaran.php?id=<?= $data_matapelajaran['id_matapelajaran']; ?>" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p><?= $data_matapelajaran['nama_matapelajaran']; ?></p>
+              </a>
+            </li>
+<?php
+          }
+?>
         </ul>
       </nav>
     </div>
@@ -140,7 +134,7 @@
 
   <div class="content-wrapper">
     <div class="row">
-    <div class="cols-12">
+    <div class="col-12">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
@@ -164,24 +158,25 @@
       <div class="row">
         <div class="col-12">
           <div class="card ml-2">
-            <div class="card-header">
+            <div class="card-header" style="background-color: #3f6791;">
               <h3 class="card-title">Detail Nilai</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <table class="table table-bordered table-hover text-center">
+              <div class="table-responsive">
+              <table class="table table-bordered table-hover text-center table-fixed">
                 <tr>
                   <td rowspan="2" class="align-middle">No</td>
                   <td rowspan="2" class="align-middle">NIS</td>
-                  <td rowspan="2" class="align-middle">Nama Siswa</td>
+                  <td rowspan="2" class="align-middle" style="min-width: 300px;">Nama Siswa</td>
                   <td colspan="3" class="align-middle">Harian</td>
                   <td colspan="3" class="align-middle">PTS</td>
                   <td colspan="3" class="align-middle">PAS</td>
                   <td colspan="3" class="align-middle">KD</td>
-                  <td rowspan="2" class="align-middle">Niali</td>
-                  <td rowspan="2" class="align-middle">Predikat</td>
+                  <td rowspan="2" class="align-middle" style="min-width: 100px;">Niali</td>
+                  <td rowspan="2" class="align-middle" style="min-width: 100px;">Predikat</td>
                   <td colspan="2" class="align-middle">Hasil</td>
-                  <td rowspan="2" class="align-middle">Deskripsi</td>
+                  <td rowspan="2" class="align-middle" style="min-width: 300px;">Deskripsi</td>
                   <td rowspan="2" class="align-middle">Action</td>
                 </tr>
                 <tr>
@@ -236,7 +231,7 @@
                   <td>21</td>
                   <td>
                     <form action="input_nilai.php?id=<?= $data_nilai_matapelajaran['id'] ;?>" method="POST">
-                        <button class="btn btn-primary" name="update" type="submit">Update</button>
+                        <button class="btn btn-primary" name="update" type="submit">Perbaharui</button>
                     </form>
                   </td>
                 </tr>
@@ -244,12 +239,14 @@
              }
 ?>
               </table>
+              </div>
             </div>
           </div>
         </div>
         <!-- /.card-body -->
       </div>
     </div>
+  </section>
   </div>
   <!-- /.card -->
   </div>
@@ -290,3 +287,4 @@
 <script src="../../dist/js/pages/dashboard2.js"></script>
 </body>
 </html>
+<?php } ?>
