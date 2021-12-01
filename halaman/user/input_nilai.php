@@ -299,7 +299,7 @@
                       <label for="labelPredikat">Predikat</label>
                       <input type="text" name="predikat" class="form-control" id="labelPredikat" placeholder="Masukan Nilai" value="<?= $predikat ;?>" required readonly>
                     </div>
-                    <div class="form-group text-center">
+                    <div class="form-group text-right">
                       <button type="button" id="Update" class="btn btn-primary mt-2" style="width: 200px;" onclick="konfirmasi()">Perbaharui</button>
                     </div>
                   </div>

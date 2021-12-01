@@ -15,10 +15,9 @@
   <link rel="stylesheet" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../dist/css/adminlte.min.css">
-  <!-- Swal -->
+  <!-- Swal css-->
   <link rel="stylesheet" href="../plugins/sweetalert2/sweetalert2.min.css">
-
-  <!-- Swal -->
+  <!-- Swal js-->
   <script src="../plugins/sweetalert2/sweetalert2.all.min.js"></script>
 </head>
 <body class="hold-transition login-page">
@@ -55,6 +54,7 @@
 <?php
         } else {
             $_SESSION['id_guru'] = $row['id_guru'];
+            $_SESSION['login'] = $row['id_guru'];
             $temp_id = $row['id_guru'];
             $query_guru = mysqli_query($conn, "SELECT * FROM table_guru WHERE id_guru=$temp_id");
             $data = mysqli_fetch_assoc($query_guru);

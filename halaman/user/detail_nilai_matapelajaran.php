@@ -1,6 +1,13 @@
 <?php
   include_once("../../php/connection.php");
   session_start();
+  if (!isset($_SESSION['login'])) {
+?>
+      <script>
+          window.location = "http://localhost/web-sd/halaman/login.php";
+      </script>
+<?php
+  } else {
   $id_url = $_GET['id'];
   $kelas = $_SESSION['kelas'];
   $result_query_li = mysqli_query($conn, "SELECT * FROM table_matapelajaran WHERE kelas=$kelas ORDER BY id_matapelajaran ASC");
@@ -14,7 +21,6 @@
   $result_query_siswa = mysqli_query($conn, "SELECT * FROM table_siswa WHERE kelas=$kelas ORDER BY nama_siswa");
   if($result_query_matapelajaran -> num_rows > 0) {
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -281,3 +287,4 @@
 <script src="../../dist/js/pages/dashboard2.js"></script>
 </body>
 </html>
+<?php } ?>
