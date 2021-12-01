@@ -152,24 +152,25 @@
       <div class="row">
         <div class="col-12">
           <div class="card ml-2">
-            <div class="card-header">
+            <div class="card-header" style="background-color: #3f6791;">
               <h3 class="card-title">Detail Nilai</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <table class="table table-bordered table-hover text-center">
+              <div class="table-responsive">
+              <table class="table table-bordered table-hover text-center table-fixed">
                 <tr>
                   <td rowspan="2" class="align-middle">No</td>
                   <td rowspan="2" class="align-middle">NIS</td>
-                  <td rowspan="2" class="align-middle">Nama Siswa</td>
+                  <td rowspan="2" class="align-middle" style="min-width: 300px;">Nama Siswa</td>
                   <td colspan="3" class="align-middle">Harian</td>
                   <td colspan="3" class="align-middle">PTS</td>
                   <td colspan="3" class="align-middle">PAS</td>
                   <td colspan="3" class="align-middle">KD</td>
-                  <td rowspan="2" class="align-middle">Niali</td>
-                  <td rowspan="2" class="align-middle">Predikat</td>
+                  <td rowspan="2" class="align-middle" style="min-width: 100px;">Niali</td>
+                  <td rowspan="2" class="align-middle" style="min-width: 100px;">Predikat</td>
                   <td colspan="2" class="align-middle">Hasil</td>
-                  <td rowspan="2" class="align-middle">Deskripsi</td>
+                  <td rowspan="2" class="align-middle" style="min-width: 300px;">Deskripsi</td>
                   <td rowspan="2" class="align-middle">Action</td>
                 </tr>
                 <tr>
@@ -224,7 +225,7 @@
                   <td>21</td>
                   <td>
                     <form action="input_nilai.php?id=<?= $data_nilai_matapelajaran['id'] ;?>" method="POST">
-                        <button class="btn btn-primary" name="update" type="submit">Update</button>
+                        <button class="btn btn-primary" name="update" type="submit">Perbaharui</button>
                     </form>
                   </td>
                 </tr>
@@ -232,6 +233,7 @@
              }
 ?>
               </table>
+              </div>
             </div>
           </div>
         </div>

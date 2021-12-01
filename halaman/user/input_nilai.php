@@ -1,3 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+    <!-- Swal -->
+    <link rel="stylesheet" href="../../plugins/sweetalert2/sweetalert2.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+    <!-- Swal css-->
+    <link rel="stylesheet" href="../plugins/sweetalert2/sweetalert2.min.css">
+    <!-- Swal js-->
+    <script src="../../plugins/sweetalert2/sweetalert2.all.min.js"></script>
+</head>
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <?php
   include_once("../../php/connection.php");
   session_start();
@@ -24,26 +47,6 @@
   }
   $nilai_angka = ($nilai_harian_1 + $nilai_harian_2 + $nilai_harian_3 + $nilai_pts_1 + $nilai_pts_2 + $nilai_pts_3 + $nilai_pas_1 + $nilai_pas_2 + $nilai_pas_3 + $nilai_kd_1 + $nilai_kd_2 +$nilai_kd_3) / 12;
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
-   <!-- Google Font: Source Sans Pro -->
-   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-   <!-- Font Awesome Icons -->
-   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-   <!-- Swal -->
-   <link rel="stylesheet" href="../../plugins/sweetalert2/sweetalert2.min.css">
-   <!-- overlayScrollbars -->
-   <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-   <!-- Theme style -->
-   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-</head>
-<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
-  <script src="../../plugins/sweetalert2/sweetalert2.all.min.js"></script>
   <div class="wrapper">
    <!-- Navbar -->
    <nav class="main-header navbar navbar-expand navbar-dark">
@@ -297,7 +300,7 @@
                       <input type="text" name="predikat" class="form-control" id="labelPredikat" placeholder="Masukan Nilai" value="<?= $predikat ;?>" required readonly>
                     </div>
                     <div class="form-group text-center">
-                      <button name="Update" id="Update" class="btn btn-primary mt-2" style="width: 200px;" onclick="konfirmasi()">Update</button>
+                      <button type="button" id="Update" class="btn btn-primary mt-2" style="width: 200px;" onclick="konfirmasi()">Perbaharui</button>
                     </div>
                   </div>
                 </div>
@@ -312,16 +315,15 @@
 
 <script>
   function konfirmasi() {
-    var btnUpdate = document.getElementById('Update');
-    btnUpdate.preventDefault();
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: "Apakah Anda Yakin ?",
+      text: "Nilai <?= $nama ;?> Akan Diperbaharui",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      cancelButtonText: "Batalkan",
+      confirmButtonText: "Perbaharui"
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire(
@@ -350,12 +352,5 @@
 <script src="../../plugins/raphael/raphael.min.js"></script>
 <script src="../../plugins/jquery-mapael/jquery.mapael.min.js"></script>
 <script src="../../plugins/jquery-mapael/maps/usa_states.min.js"></script>
-<!-- ChartJS -->
-<script src="../../plugins/chart.js/Chart.min.js"></script>
-
-<!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="../../dist/js/pages/dashboard2.js"></script>
 </body>
 </html>
