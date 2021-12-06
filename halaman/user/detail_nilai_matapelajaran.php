@@ -133,122 +133,103 @@
   </aside>
 
   <div class="content-wrapper">
-    <div class="row">
-      <div class="col-12">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-          <div class="container-fluid">
-            <div class="row mb-2">
-              <div class="col-sm-6">
-                <h1>Mata Pelajaran <?= $nama_matapelajaran ;?></h1>
-              </div>
-              <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                  <li class="breadcrumb-item"><a href="home.php">Home</a></li>
-                  <li class="breadcrumb-item active">Mata Pelajaran <?= $nama_matapelajaran ;?></li>
-                </ol>
-              </div>
-            </div>
-          </div><!-- /.container-fluid -->
-        </section>
-
+    <div class="row mb-3">
   <!-- Main content -->
-  <section class="content">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-          <div class="card ml-2">
-            <div class="card-header" style="background-color: #3f6791;">
-              <h3 class="card-title">Detail Nilai</h3>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-              <div class="table-responsive">
-              <table class="table table-bordered table-hover text-center table-fixed">
-                <tr>
-                  <td rowspan="2" class="align-middle">No</td>
-                  <td rowspan="2" class="align-middle">NIS</td>
-                  <td rowspan="2" class="align-middle" style="min-width: 300px;">Nama Siswa</td>
-                  <td colspan="3" class="align-middle">Harian</td>
-                  <td colspan="3" class="align-middle">PTS</td>
-                  <td colspan="3" class="align-middle">PAS</td>
-                  <td colspan="3" class="align-middle">KD</td>
-                  <td rowspan="2" class="align-middle" style="min-width: 100px;">Niali</td>
-                  <td rowspan="2" class="align-middle" style="min-width: 100px;">Predikat</td>
-                  <td colspan="2" class="align-middle">Hasil</td>
-                  <td rowspan="2" class="align-middle" style="min-width: 300px;">Deskripsi</td>
-                  <td rowspan="2" class="align-middle">Action</td>
-                </tr>
-                <tr>
-                  <td>H1</td>
-                  <td>H2</td>
-                  <td>H3</td>
-                  <td>T1</td>
-                  <td>T2</td>
-                  <td>T3</td>
-                  <td>A1</td>
-                  <td>A2</td>
-                  <td>A3</td>
-                  <td>K1</td>
-                  <td>K2</td>
-                  <td>K3</td>
-                  <td>MIN</td>
-                  <td>MAX</td>
-                </tr>
-<?php
-              while($data_nilai_matapelajaran = mysqli_fetch_array($result_query_matapelajaran)) {         
-?>
-                <tr>
-                  <td>1</td>
-                  <td><?= $data_nilai_matapelajaran['nis'] ;?></td>
-                  <td class="text-left"><?= $data_nilai_matapelajaran['nama_siswa'] ;?></td>
-                  <td><?= $data_nilai_matapelajaran['nilai_harian_1'] ;?></td>
-                  <td><?= $data_nilai_matapelajaran['nilai_harian_2'] ;?></td>
-                  <td><?= $data_nilai_matapelajaran['nilai_harian_3'] ;?></td>
-                  <td><?= $data_nilai_matapelajaran['nilai_pts_1'] ;?></td>
-                  <td><?= $data_nilai_matapelajaran['nilai_pts_2'] ;?></td>
-                  <td><?= $data_nilai_matapelajaran['nilai_pts_3'] ;?></td>
-                  <td><?= $data_nilai_matapelajaran['nilai_pas_1'] ;?></td>
-                  <td><?= $data_nilai_matapelajaran['nilai_pas_2'] ;?></td>
-                  <td><?= $data_nilai_matapelajaran['nilai_pas_3'] ;?></td>
-                  <td><?= $data_nilai_matapelajaran['nilai_kd_1'] ;?></td>
-                  <td><?= $data_nilai_matapelajaran['nilai_kd_2'] ;?></td>
-                  <td><?= $data_nilai_matapelajaran['nilai_kd_3'] ;?></td>
-                  <td><?= $data_nilai_matapelajaran['nilai'] ;?></td>
-                  <td><?= $data_nilai_matapelajaran['predikat'] ;?></td>
-                  <td>
-                    <?php
-                      $min = $data_nilai_matapelajaran['nilai'] - 2;
-                      echo $min;
-                    ?>
-                  </td>
-                  <td>
-                    <?php
-                      $max = $data_nilai_matapelajaran['nilai'] + 2;
-                      echo $max;
-                    ?>
-                  </td>
-                  <td>21</td>
-                  <td>
-                    <form action="input_nilai.php?id=<?= $data_nilai_matapelajaran['id'] ;?>" method="POST">
-                        <button class="btn btn-primary" name="update" type="submit">Perbaharui</button>
-                    </form>
-                  </td>
-                </tr>
-<?php 
-             }
-?>
-              </table>
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row mt-5">
+            <div class="col-12">
+              <div class="card ml-2">
+                <div class="card-header" style="background-color: #3f6791;">
+                  <h3 class="card-title">Detail Nilai</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <div class="table-responsive">
+                  <table class="table table-bordered table-hover text-center table-fixed">
+                    <tr>
+                      <td rowspan="2" class="align-middle">No</td>
+                      <td rowspan="2" class="align-middle">NIS</td>
+                      <td rowspan="2" class="align-middle" style="min-width: 300px;">Nama Siswa</td>
+                      <td colspan="3" class="align-middle">Harian</td>
+                      <td colspan="3" class="align-middle">PTS</td>
+                      <td colspan="3" class="align-middle">PAS</td>
+                      <td colspan="3" class="align-middle">KD</td>
+                      <td rowspan="2" class="align-middle" style="min-width: 100px;">Niali</td>
+                      <td rowspan="2" class="align-middle" style="min-width: 100px;">Predikat</td>
+                      <td colspan="2" class="align-middle">Hasil</td>
+                      <td rowspan="2" class="align-middle" style="min-width: 300px;">Deskripsi</td>
+                      <td rowspan="2" class="align-middle">Action</td>
+                    </tr>
+                    <tr>
+                      <td>H1</td>
+                      <td>H2</td>
+                      <td>H3</td>
+                      <td>T1</td>
+                      <td>T2</td>
+                      <td>T3</td>
+                      <td>A1</td>
+                      <td>A2</td>
+                      <td>A3</td>
+                      <td>K1</td>
+                      <td>K2</td>
+                      <td>K3</td>
+                      <td>MIN</td>
+                      <td>MAX</td>
+                    </tr>
+    <?php
+                  while($data_nilai_matapelajaran = mysqli_fetch_array($result_query_matapelajaran)) {         
+    ?>
+                    <tr>
+                      <td>1</td>
+                      <td><?= $data_nilai_matapelajaran['nis'] ;?></td>
+                      <td class="text-left"><?= $data_nilai_matapelajaran['nama_siswa'] ;?></td>
+                      <td><?= $data_nilai_matapelajaran['nilai_harian_1'] ;?></td>
+                      <td><?= $data_nilai_matapelajaran['nilai_harian_2'] ;?></td>
+                      <td><?= $data_nilai_matapelajaran['nilai_harian_3'] ;?></td>
+                      <td><?= $data_nilai_matapelajaran['nilai_pts_1'] ;?></td>
+                      <td><?= $data_nilai_matapelajaran['nilai_pts_2'] ;?></td>
+                      <td><?= $data_nilai_matapelajaran['nilai_pts_3'] ;?></td>
+                      <td><?= $data_nilai_matapelajaran['nilai_pas_1'] ;?></td>
+                      <td><?= $data_nilai_matapelajaran['nilai_pas_2'] ;?></td>
+                      <td><?= $data_nilai_matapelajaran['nilai_pas_3'] ;?></td>
+                      <td><?= $data_nilai_matapelajaran['nilai_kd_1'] ;?></td>
+                      <td><?= $data_nilai_matapelajaran['nilai_kd_2'] ;?></td>
+                      <td><?= $data_nilai_matapelajaran['nilai_kd_3'] ;?></td>
+                      <td><?= $data_nilai_matapelajaran['nilai'] ;?></td>
+                      <td><?= $data_nilai_matapelajaran['predikat'] ;?></td>
+                      <td>
+                        <?php
+                          $min = $data_nilai_matapelajaran['nilai'] - 2;
+                          echo $min;
+                        ?>
+                      </td>
+                      <td>
+                        <?php
+                          $max = $data_nilai_matapelajaran['nilai'] + 2;
+                          echo $max;
+                        ?>
+                      </td>
+                      <td>21</td>
+                      <td>
+                        <form action="input_nilai.php?id=<?= $data_nilai_matapelajaran['id'] ;?>" method="POST">
+                            <button class="btn btn-primary" name="update" type="submit">Perbaharui</button>
+                        </form>
+                      </td>
+                    </tr>
+    <?php 
+                }
+    ?>
+                  </table>
+                  </div>
+                </div>
               </div>
             </div>
+            <!-- /.card-body -->
           </div>
         </div>
-        <!-- /.card-body -->
-      </div>
+      </section>
     </div>
-  </section>
-  </div>
-  <!-- /.card -->
   </div>
 </div>
 

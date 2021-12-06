@@ -37,6 +37,7 @@
             $_SESSION['id_admin'] = $row['id_admin'];
             $_SESSION['login'] = $row['id_admin'];
             $temp_id = $row['id_admin'];
+            $_SESSION['main_page'] = "1";
             $query_admin = mysqli_query($conn, "SELECT * FROM table_admin WHERE id_admin=$temp_id");
             $data = mysqli_fetch_assoc($query_admin);
             $nama = $data['nama_admin'];
@@ -57,6 +58,7 @@
             $_SESSION['id_guru'] = $row['id_guru'];
             $_SESSION['login'] = $row['id_guru'];
             $temp_id = $row['id_guru'];
+            $_SESSION['main_page'] = "2";
             $query_guru = mysqli_query($conn, "SELECT * FROM table_guru WHERE id_guru=$temp_id");
             $data = mysqli_fetch_assoc($query_guru);
             $nama = $data['nama_guru'];
