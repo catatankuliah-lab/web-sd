@@ -59,6 +59,7 @@
             $_SESSION['login'] = $row['id_guru'];
             $temp_id = $row['id_guru'];
             $_SESSION['main_page'] = "2";
+            $_SESSION['sub_page'] = "0";
             $query_guru = mysqli_query($conn, "SELECT * FROM table_guru WHERE id_guru=$temp_id");
             $data = mysqli_fetch_assoc($query_guru);
             $nama = $data['nama_guru'];

@@ -37,7 +37,17 @@
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
             <li class="nav-item d-none d-sm-inline-block active">
-                <a href="home.html" class="nav-link">Dashboard</a>
+<?php
+                if($_GET['page'] == "1") {
+?>
+                    <a href="home.html" class="nav-link">Nilai Siswa</a>
+<?php
+                } else {
+?>
+                    <a href="home.html" class="nav-link">Dashboard</a>
+<?php
+                }
+?>
             </li>
 <?php
             if(isset($_SESSION['sub_page'])) {
@@ -68,9 +78,8 @@
     <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="#" class="brand-link">
-        <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">Admin</span>
+        <a href="#" class="brand-link text-center">
+            <span>SD N 1 KERTAINANGUN</span>
         </a>
 
         <!-- Sidebar -->
@@ -97,7 +106,7 @@
                             while($data_matapelajaran = mysqli_fetch_array($result_query_matapelajaran)) {
             ?>
                             <li class="nav-item">
-                                <a href="guru.php?mpid=<?= $data_matapelajaran['id_matapelajaran']; ?>" class="nav-link">
+                                <a href="guru.php?mpid=<?= $data_matapelajaran['id_matapelajaran']; ?>&page=1" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p><?= $data_matapelajaran['nama_matapelajaran']; ?></p>
                                 </a>
@@ -112,7 +121,7 @@
                             <a href="inputkkm.php?id=<?= $kelas ;?>" class="nav-link">
                             <i class="nav-icon fas fa-book"></i>
                             <p>
-                                KMM
+                                KKM
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                             </a>
@@ -126,11 +135,13 @@
 
     <!-- Content Wrapper. Contains page content -->
 <?php
-    // if($sub_page=='') {
-    //     include('content_detai_nilai.php');
-    // } else {
-    //     include('content_dashboard.php');
-    // }
+    $page = $_GET['page'];
+    if($page == "1") {
+        include_once("content_detai_nilai.php");
+    } else {
+        include('content_dashboard.php');
+    }
+    
 ?>
     <!-- REQUIRED SCRIPTS -->
     <!-- jQuery -->

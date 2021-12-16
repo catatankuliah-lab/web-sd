@@ -148,7 +148,7 @@
 
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper container-fluid">
   <!-- /.card-header -->
   <div class="row mt-3">
   <div class="col-sm-12 ml-1 mt-5">

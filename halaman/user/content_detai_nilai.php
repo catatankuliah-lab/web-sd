@@ -1,5 +1,5 @@
 <?php
-    $id_url = $_GET['id'];
+    $id_url = $_GET['mpid'];
     $kelas = $_SESSION['kelas'];
     $result_query_li = mysqli_query($conn, "SELECT * FROM table_matapelajaran WHERE kelas=$kelas ORDER BY id_matapelajaran ASC");
     $query_nama_matapelajaran = mysqli_query($conn, "SELECT nama_matapelajaran FROM table_matapelajaran WHERE id_matapelajaran=$id_url");
@@ -21,7 +21,7 @@
             <div class="col-12">
               <div class="card ml-2">
                 <div class="card-header" style="background-color: #3f6791;">
-                  <h3 class="card-title">Detail Nilai</h3>
+                  <h3 class="card-title">Mata Pelajaran <?= $_SESSION['nama_matapelajaran'] ;?></h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
