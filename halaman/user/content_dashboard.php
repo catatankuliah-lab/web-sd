@@ -1,13 +1,5 @@
 <?php
-    $id_guru_session = $_SESSION['id_guru'];
-    $result_query_guru = mysqli_query($conn, "SELECT * FROM table_guru WHERE id_guru= $id_guru_session");
-    while($data_guru = mysqli_fetch_array($result_query_guru))
-    {
-        $nama_guru = $data_guru['nama_guru'];
-        $kelas = $data_guru['kelas'];
-        $nip = $data_guru['nip'];
-    }
-    $_SESSION['kelas'] = $kelas;
+    
     $result_query_matapelajaran = mysqli_query($conn, "SELECT * FROM table_matapelajaran WHERE kelas=$kelas ORDER BY id_matapelajaran ASC");
     $result_query_jumlah_matapelajaran = mysqli_num_rows($result_query_matapelajaran);
     $result_query_siswa = mysqli_query($conn, "SELECT * FROM table_siswa WHERE kelas=$kelas ORDER BY nama_siswa");
@@ -75,10 +67,10 @@
                                 <p class="text-muted">Kelas <?= $kelas ;?></p>
                                 <hr>
                                 <strong><i class="fas fa-user"></i> NAMA GURU</strong>
-                                <p class="text-muted"><?= $nama_guru ;?></p>
+                                <p class="text-muted"><?= $_SESSION['nama'] ;?></p>
                                 <hr>
                                 <strong><i class="fas fa-key"></i> NIP</strong>
-                                <p class="text-muted"><?= $nip ;?></p>
+                                <p class="text-muted"><?= $_SESSION['nip'] ;?></p>
                                 <hr>
                                 <strong><i class="fas fa-users"></i> Jumlah Data Siswa Yang Masuk</strong>
                                 <p class="text-muted"><?= $result_query_jumlah_siswa ;?> Siswa</p>

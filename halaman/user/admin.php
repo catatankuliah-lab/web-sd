@@ -35,7 +35,7 @@
                 $dashboard_active = "";
                 $siswa_active = "";
                 $mp = "";
-                if($_GET['page'] == "1") {
+                if($_GET['page'] == "1" || $_GET['page'] == "4" || $_GET['page'] == "5" | $_GET['page'] == "6") {
 ?>
                     <a href="#" class="nav-link">Data Guru</a>
 <?php
@@ -141,19 +141,19 @@
 <?php
     $page = $_GET['page'];
     if($page == "1") {
-        include("content_detai_nilai.php");
-    // } else if($page == "2") {
-    //     include("content_input_nilai.php");
-    // } else if($page == "3") {
-    //     include("content_input_kkm.php");
-    // } else if($page == "4") {
-    //     include("proses_update_kkm.php");
-    // } else if($page == "5") {
-    //     include("proses_update_nilai.php");
-    // } else if($page == "6") {
-    //     include("content_nilai_siswa.php");
-    // } else if($page == "7") {
-    //     include("content_rincian_nilai.php");
+        include("content_guru.php");
+    } else if($page == "2") {
+        include("content_guru.php");
+    } else if($page == "4") {
+        include("content_input_guru.php");
+    } else if($page == "5") {
+        include("proses_input_guru.php");
+    } else if($page == "6") {
+        include("content_update_guru.php");
+    } else if($page == "7") {
+        include("proses_update_guru.php");
+    } else if($page == "8") {
+        include("content_rincian_nilai.php");
     } else {
         include('content_dashboard_admin.php');
     }
