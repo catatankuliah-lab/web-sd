@@ -178,52 +178,28 @@
           <div class="card">
   <div class="card-body">
     <div class="card-header">
-      <h1 class="card-title">Data Siswa</h1>
+      <h1 class="card-title">Data Guru</h1>
     </div>
     <!-- /.card-header -->
     <div class="card-body">
-      <button type="submit" class="btn btn-primary text-right">Tambah Siswa</button>  
+      <button type="submit" class="btn btn-primary text-right">Tambah Guru</button>  
       <table id="example1" class="table table-bordered table-striped">
-        <select class="text-right">
-          <option value="1">Kelas 1</option>
-          <option value="2">Kelas 2</option>
-          <option value="3">Kelas 3</option>
-          <option value="4">Kelas 4</option>
-          <option value="5">Kelas 5</option>
-          <option value="6">Kelas 6</option>
-        </select>
         <thead>
         <tr>
-          <th>Nomer Induk Siswa</th>
-          <th>Nama Siswa</th>
-          <th>Kelas Siswa</th>
+          <th>Tahun Ajaran</th>
+          <th>Guru Kelas</th>
+          <th>Nama Guru</th>
+          <th>NIP</th>
           <th>Actions</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-          <td>2224321</td>
+          <td>2021-2022</td>
+          <td>Kelas 6</td>
           <td>Aldo Al Triansah</td>
-          <td>6</td>
+          <td>20180810048</td>
           <td> <button type="submit" class="btn btn-primary">Edit</button></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td><button type="submit" class="btn btn-primary">Edit</button></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td><button type="submit" class="btn btn-primary">Edit</button></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td><button type="submit" class="btn btn-primary">Edit</button></td>
         </tr>
         </tfoot>
       </table>
@@ -284,30 +260,6 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <script src="../../dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script>
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": [], 
-      "paging": false,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": false,
-      "info": false,
-      "autoWidth": false,
-      "responsive": true,
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": true,
-      "searching": false,
-      "ordering": false,
-      "info": false,
-      "autoWidth": false,
-      "responsive": true,
-    });
-  });
-</script>
 </body>
 </html>
 
