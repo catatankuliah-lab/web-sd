@@ -50,7 +50,7 @@
               showConfirmButton: false,
               timer: 2000,
             }).then((result) => {
-              window.location = "http://localhost/web-sd/halaman/login.php";
+              window.location = "http://localhost/web-sd/halaman/user/admin.php?page=0";
             });
           </script>
 <?php
@@ -72,7 +72,7 @@
                 showConfirmButton: false,
                 timer: 2000,
               }).then((result) => {
-                window.location = "http://localhost/web-sd/halaman/user/dashboard.php";
+                window.location = "http://localhost/web-sd/halaman/user/guru.php?page=0";
               });
             </script>
 <?php

@@ -2,9 +2,11 @@
     $id_url = $_GET['mpid'];
     $kelas = $_SESSION['kelas'];
     $result_query_li = mysqli_query($conn, "SELECT * FROM table_matapelajaran WHERE kelas=$kelas ORDER BY id_matapelajaran ASC");
-    $query_nama_matapelajaran = mysqli_query($conn, "SELECT nama_matapelajaran FROM table_matapelajaran WHERE id_matapelajaran=$id_url");
+    $query_nama_matapelajaran = mysqli_query($conn, "SELECT * FROM table_matapelajaran WHERE id_matapelajaran=$id_url");
     while($data_namapelajaran = mysqli_fetch_array($query_nama_matapelajaran)) {
         $nama_matapelajaran = $data_namapelajaran['nama_matapelajaran'];
+        $nilai_kkm =  $data_namapelajaran['kkm'];
+
     }
     $_SESSION['nama_matapelajaran'] = $nama_matapelajaran;
     $query_matapelajaran = "SELECT table_nilai_matapelajaran.*, table_siswa.nis, table_siswa.nama_siswa FROM table_nilai_matapelajaran INNER JOIN table_siswa ON table_nilai_matapelajaran.id_siswa = table_siswa.id_siswa WHERE id_matapelajaran=$id_url ORDER BY id_siswa ASC";
@@ -21,7 +23,25 @@
             <div class="col-12">
               <div class="card ml-2">
                 <div class="card-header" style="background-color: #3f6791;">
-                  <h3 class="card-title">Mata Pelajaran <?= $_SESSION['nama_matapelajaran'] ;?></h3>
+                  <h3 class="card-title">KKM Mata Pelajaran <?= $_SESSION['nama_matapelajaran'] ;?></h3>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-10">Nilai KKM ( <?=$nilai_kkm;?> )</div>
+                    <div class="col-2 text-right">
+                      <a href="guru.php?mpid=<?=$id_url;?>&page=3" class="btn btn-primary">Perbaharui</a>
+                        <!-- <button class="btn btn-primary" name="update-kkm" type="submit">Perbaharui</button> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="card ml-2">
+                <div class="card-header" style="background-color: #3f6791;">
+                  <h3 class="card-title">Nilai Mata Pelajaran <?= $_SESSION['nama_matapelajaran'] ;?></h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -58,10 +78,11 @@
                       <td>MAX</td>
                     </tr>
     <?php
+                  $nomor = 1;
                   while($data_nilai_matapelajaran = mysqli_fetch_array($result_query_matapelajaran)) {         
     ?>
                     <tr>
-                      <td>1</td>
+                      <td><?=$nomor;?></td>
                       <td><?= $data_nilai_matapelajaran['nis'] ;?></td>
                       <td class="text-left"><?= $data_nilai_matapelajaran['nama_siswa'] ;?></td>
                       <td><?= $data_nilai_matapelajaran['nilai_harian_1'] ;?></td>
@@ -92,12 +113,13 @@
                       </td>
                       <td>21</td>
                       <td>
-                        <form action="input_nilai.php?id=<?= $data_nilai_matapelajaran['id'] ;?>" method="POST">
+                        <form action="guru.php?mpid=<?= $data_nilai_matapelajaran['id'] ;?>&page=2&id=<?= $data_nilai_matapelajaran['id'] ;?>" method="POST">
                             <button class="btn btn-primary" name="update" type="submit">Perbaharui</button>
                         </form>
                       </td>
                     </tr>
     <?php 
+                  $nomor++;
                 }
     ?>
                   </table>
