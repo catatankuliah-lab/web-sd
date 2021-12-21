@@ -43,7 +43,7 @@
                     $dashboard_active = "";
                     $siswa_active = "";
                     $mp = "";
-                } else if ($_GET['page'] == "2"){
+                } else if ($_GET['page'] == "2" || $_GET['page'] == "8"){
 ?>
                     <a href="#" class="nav-link">Data Mata Pelajaran</a>
                     
@@ -143,7 +143,9 @@
     if($page == "1") {
         include("content_guru.php");
     } else if($page == "2") {
-        include("content_guru.php");
+        include("content_matapelajaran.php");
+    } else if($page == "3") {
+        include("content_siswa.php");
     } else if($page == "4") {
         include("content_input_guru.php");
     } else if($page == "5") {
@@ -153,7 +155,9 @@
     } else if($page == "7") {
         include("proses_update_guru.php");
     } else if($page == "8") {
-        include("content_rincian_nilai.php");
+        include("content_input_matapelajaran.php");
+    } else if($page == "9") {
+        include("proses_input_matapelajaran.php");
     } else {
         include('content_dashboard_admin.php');
     }
